@@ -1,0 +1,28 @@
+{
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "description": "1. creating directories with MVC convention\r - controllers, view, models folders\r - set up server.js\r 2. MODELS\r - setting up database\r - index to tie it all together\r - User, Post, Comments (one-to-many only)\r     - User => id, username, password (encrypting password needs hooks, user has many comments and many posts)\r     - Post => id, title, description, fk_user_id (belongs to user)\r     - Comments => id, description, fk_post_id, fk_user_id (belongs to post and user)\r 3. VIEWS \r - handelbarsjs\r - login/signup, homepage, dashboard(edit posts here), post(add comments from anywhere you can see a post \"comments/newcomment-partials\"), new-post\r - folders for layouts and partials named 'views'\r     - layouts main? partials post/comment\r 4. CONTROLLERS\r - routes! api and home\r - index => apiroutes, homeroutes\r - homeroutes => (all get routes) '/', 'post/:id'(for viewing comments too), 'user/:id'(for the dashboard)\r     - defines what handelbar is being used (get page that should be displayed, info about page stored in req.param)\r     - render function\r - /api/ index, user, (blog)post, comments\r     - get, post, put, delete\r     - index => userroutes, postroutes, commentroutes\r     - (blog)post => id, title, description (includes user)\r     - user => :id, username, password\r     - comments => :id, description (includes post/user maybe) could do post.includes(comments) instead of having its own route",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "devstart": "nodemon server.js",
+    "seed": "node seeds/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.3",
+    "sequelize": "^6.34.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
