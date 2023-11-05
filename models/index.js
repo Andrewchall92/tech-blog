@@ -2,6 +2,7 @@ const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./Comment');
 
+// establishes relationships between tables
 Post.belongsTo(User, {
     foreignKey: 'user_id',
 });

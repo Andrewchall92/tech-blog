@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 
 class Comment extends Model {};
 
+// creates the table for the comments
 Comment.init(
     {
         id: {
@@ -11,24 +12,34 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        description: {
-            type: DataTypes.STRING,
+
+        body: {
+            type: DataTypes.TEXT,
             allowNull: false,
+            defaultValue: 'No content provided',
+            validate: {
+                len: {
+                    args: [1, 160],
+                    msg: 'Comment must be between 1 and 160 characters long'
+                },
+            },
         },
+
         post_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'post',
+                model: 'posts',
                 key: 'id',
-            }
+            },
         },
+        
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'users',
                 key: 'id',
-            }
-        }
+            },
+        },
     },
     {
         sequelize,
@@ -37,7 +48,7 @@ Comment.init(
         underscored: true,
         modelName: 'comments',
 
-    }
+    },
 );
 
 module.exports = Comment;
