@@ -10,19 +10,19 @@ User.init(
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     user_data: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     }
 }, 
 {
     sequelize,
     timestamps: false,
-    freezeTableName: true,
+    freezeTableName: false,
     underscored: true,
-    modelName: 'user'
+    modelName: 'user',
 }
 );
 
