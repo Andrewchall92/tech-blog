@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Post, } = require('../models');
 const withAuth = require('../utils/auth');
 
+// get all posts
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -14,16 +15,20 @@ router.get('/', async (req, res) => {
         });
 
         const posts = postData.map((post) => post.get({ plain: true }));
+        // console.log(posts);
 
+        req.session.logged_in = true;
         res.render('homepage', {
-            posts,
+            posts: posts,
             logged_in: req.session.logged_in,
         });
     } catch (err) {
+        // console.log(err);
         res.status(500).json(err);
     }
 });
 
+// get a post by id
 router.get('/post/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
@@ -46,6 +51,7 @@ router.get('/post/:id', async (req, res) => {
     }
 });
 
+// get all posts by a user
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
@@ -64,6 +70,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
+// get the login page
 router.get('/login', (res, req) => {
     if (req.session.logged_in) {
         res.redirect('/dashboard');
