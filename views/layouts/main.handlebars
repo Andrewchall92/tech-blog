@@ -10,7 +10,17 @@
 </head>
 <body>
   <header>
-
+     <h1>Blog Central</h1>
+    <nav>
+      {{#if logged_in}}
+      <a href="/homepage">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <button id="logout">Logout</button>
+      {{else}}
+      <a href="/login">login</a>
+      <a href="/signup">Signup</a>
+      {{/if}}
+    </nav>
   </header>
   <main>
     {{{ body }}}
@@ -18,8 +28,8 @@
   <footer>
 
   </footer>
-  {{!-- {{#if logged_in}}
+  {{#if logged_in}}
   <script src="/js/logout.js"></script>
-  {{/if}} --}}
+  {{/if}}
 </body>
 </html>

@@ -2,6 +2,30 @@ const router = require('express').Router();
 const { User, Post, } = require('../models');
 const withAuth = require('../utils/auth');
 
+
+
+// get the login page
+
+// router.get('/login', async (req, res) => {
+//     try {
+//         if (req.session.logged_in) {
+//             res.redirect('/dashboard');
+//             return;
+//         }
+//         console.log('login page');
+//         res.render('login');
+//     } catch (err) { res.status(500).json(err); }
+// });
+
+
+router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/dashboard');
+        return;
+    }
+    res.render('login');
+});
+
 // get all posts
 router.get('/', async (req, res) => {
     try {
@@ -17,7 +41,6 @@ router.get('/', async (req, res) => {
         const posts = postData.map((post) => post.get({ plain: true }));
         // console.log(posts);
 
-        req.session.logged_in = true;
         res.render('homepage', {
             posts: posts,
             logged_in: req.session.logged_in,
@@ -70,14 +93,5 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
-// get the login page
-router.get('/login', (res, req) => {
-    if (req.session.logged_in) {
-        res.redirect('/dashboard');
-        return;
-    }
-
-    res.render('login');
-});
 
 module.exports = router;
