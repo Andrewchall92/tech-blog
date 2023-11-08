@@ -1,0 +1,11 @@
+<div>
+{{#if logged_in}}
+<a href="/newpost">New Post</a>
+{{else}}
+<a href="/login">Login</a>
+{{/if}}
+</div>
+
+{{#each post as |post|}}
+  {{> post-details}}
+{{/each}}

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const withAuth = require("../../utils/auth");
 const { Post, User, Comment } = require("../../models");
 
-// get all posts
+// create new post
 router.post("/", withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
@@ -17,7 +17,7 @@ router.post("/", withAuth, async (req, res) => {
 });
 
 // get a post by id
-router.get("/posts/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [{ model: User, Comment }],
@@ -30,7 +30,7 @@ router.get("/posts/:id", async (req, res) => {
 });
 
 // update a post
-router.put("/posts/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const postData = await Post.update(
             { ...req.body }, 
@@ -53,7 +53,7 @@ router.put("/posts/:id", async (req, res) => {
 });
 
 // delete a post
-router.delete("/posts/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const postData = await Post.destroy({
       where: {
