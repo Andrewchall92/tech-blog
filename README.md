@@ -3,6 +3,9 @@
 ## Description
 This is a web application that allows users to create profiles and then post blogs on various topics. Users can also view and comment on other peoples blogs.
 
+[View Deployed Application](https://git.heroku.com/enigmatic-sierra-09661.git)
+
+
 ## Technologies Used
 
 - Express: A web framework for Node.js that provides features such as routing, middleware, and template engines.
