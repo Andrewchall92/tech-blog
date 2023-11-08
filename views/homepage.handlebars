@@ -1,6 +1,8 @@
 <h1>Blog Posts</h1>
 <ul>
 {{#each posts as |post|}}
+ <a href="/api/posts/{{post.id}}"> 
   {{> post-details}}
+  </a>
 {{/each}}
 </ul>

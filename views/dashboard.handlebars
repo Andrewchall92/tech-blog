@@ -1,4 +1,5 @@
 <div>
+  <h3>Welcome</h3>
 {{#if logged_in}}
 <a href="/newpost">New Post</a>
 {{else}}
@@ -7,5 +8,7 @@
 </div>
 
 {{#each post as |post|}}
+<a href="/api/posts/{{post.id}}">
   {{> post-details}}
+</a>  
 {{/each}}

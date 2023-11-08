@@ -10,13 +10,15 @@
 </head>
 <body>
   <header>
-     <h1>Blog Central</h1>
+     <h2>Blog Central</h2>
     <nav>
       {{#if logged_in}}
       <a href="/">Home</a>
       <a href="/dashboard">Dashboard</a>
       <button id="logout">Logout</button>
       {{else}}
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
       <a href="/login">login</a>
       {{/if}}
     </nav>
